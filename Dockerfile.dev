@@ -11,7 +11,7 @@ COPY ./golang/ .
 RUN go run main.go
 
 # 第二阶段：Python环境
-FROM python:3.13.2-slim
+FROM python:3.10.2-slim
 
 # 设置工作目录
 WORKDIR /app
@@ -26,4 +26,5 @@ RUN pip install --no-cache-dir -r ./python/requirements.txt
 EXPOSE 8000
 
 # 设置启动命令
+
 CMD ["python", "./python/server_example.py"]
