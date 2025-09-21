@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"  # 根据你的Python应用实际端口调整
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    command: python ./python/server_example.py
+
+# 如果需要其他服务（如数据库），可以在这里添加
+#  db:
+#    image: postgres:13
+#    environment:
+#      POSTGRES_DB: mydb
+#      POSTGRES_USER: user
+#      POSTGRES_PASSWORD: password
+#    volumes:
+#      - postgres_data:/var/lib/postgresql/data
+#
+#volumes:
+#  postgres_data:
